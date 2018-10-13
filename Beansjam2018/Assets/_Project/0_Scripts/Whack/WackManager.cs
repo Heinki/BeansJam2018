@@ -11,6 +11,7 @@ public class WackManager : MonoBehaviour {
     bool finished = false;
     int hitItems;
 
+
     // Use this for initialization
     void Start () {
         wackables = GameObject.FindGameObjectsWithTag("Wack");
@@ -21,7 +22,8 @@ public class WackManager : MonoBehaviour {
 	void Update () {
         clicked();
         touched();
-	}
+
+    }
 
     void touched() {
         for (int i = 0; i < Input.touchCount; i++) {
@@ -71,5 +73,19 @@ public class WackManager : MonoBehaviour {
 
             }
         }
+    }
+
+    void resetWhack()
+    {
+        if(this.finished)
+        {
+            for (int i = 0; i < wackables.Length; i++)
+            {
+                wackables[i].GetComponent<WackObject>().resetObject();
+            }
+
+            this.finished = false;
+        }
+       
     }
 }
