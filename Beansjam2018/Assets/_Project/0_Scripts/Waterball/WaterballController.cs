@@ -42,7 +42,7 @@ public class WaterballController : MonoBehaviour {
             rb.useGravity = true;
         }
         CheckForSwipe();
-        //CheckWaterBallTouch();
+        CheckWaterBallTouch();
         CheckForSelfDestroy();
     }
 
@@ -82,7 +82,7 @@ public class WaterballController : MonoBehaviour {
     private void CheckForSwipe()
     {
 
-        if (Input.touchCount == 1 && throwable)
+        if (Input.touchCount == 1 && throwable && waterballTouched)
         {
             touched = true;
             Touch touch = Input.GetTouch(0);
@@ -102,7 +102,7 @@ public class WaterballController : MonoBehaviour {
         }
 
         //MOUSEMOUSE
-        if (Input.GetMouseButton(0) && throwable)
+        if (Input.GetMouseButton(0) && throwable && waterballTouched)
         {
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
             this.transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime * lerpFactor);
@@ -164,6 +164,10 @@ public class WaterballController : MonoBehaviour {
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().UpdateFireSoundVol();
             Destroy(other.gameObject);
+        } else if(other.tag == "waterball_booth")
+        {
+            Destroy(this.gameObject);
+            //SPLASH PARTICLE & SOUND
         }
     }
 }

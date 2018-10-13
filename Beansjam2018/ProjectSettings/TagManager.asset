@@ -12,6 +12,10 @@ TagManager:
   - Ice
   - Flies
   - Whack
+  - Wack
+  - waterball_booth
+  - Swipecontrol
+  - vcam
   layers:
   - Default
   - TransparentFX
