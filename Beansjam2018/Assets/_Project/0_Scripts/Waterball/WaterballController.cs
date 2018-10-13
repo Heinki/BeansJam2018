@@ -11,6 +11,7 @@ public class WaterballController : MonoBehaviour {
     public Vector2 screenShake;
     public Vector3 velocity;
     public Vector3 throwMultiplier;
+    public AudioSource fx_watersplash;
 
     //Private References
     Rigidbody rb;
@@ -155,11 +156,13 @@ public class WaterballController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Fire")
+        fx_watersplash.Play();
+        if (other.tag == "Fire")
         {
             iTween.ShakePosition(Camera.current.gameObject, iTween.Hash("y", screenShake.y, "x", screenShake.x, "time", 0.3f));
             Handheld.Vibrate();
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().UpdateFireSoundVol();
             Destroy(other.gameObject);
         }
     }
