@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Cinemachine.Utility;
 
 
 public class SwipeControl : MonoBehaviour {
