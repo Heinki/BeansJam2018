@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65158606339483410}
   - component: {fileID: 114502068219041584}
   m_Layer: 0
-  m_Name: Wack
+  m_Name: Whack
   m_TagString: Wack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

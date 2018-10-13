@@ -5,13 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - waterball
-  - Wack
   - Debug
   - Fire
   - WaterballGamemanager
   - Kotze
   - Ice
   - Flies
+  - Whack
   layers:
   - Default
   - TransparentFX

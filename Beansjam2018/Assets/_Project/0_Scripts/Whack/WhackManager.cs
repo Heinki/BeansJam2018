@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class WackManager : MonoBehaviour {
+public class WhackManager : MonoBehaviour {
 
     Ray ray;
     RaycastHit hit;
-    GameObject[] wackables;
+    GameObject[] whackables;
     bool finished = false;
     int hitItems;
 
 
     // Use this for initialization
     void Start () {
-        wackables = GameObject.FindGameObjectsWithTag("Wack");
+        whackables = GameObject.FindGameObjectsWithTag("Whack");
         hitItems = 0;
     }
 	
@@ -30,17 +30,17 @@ public class WackManager : MonoBehaviour {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "Wack")
+                if (hit.transform.tag == "Whack")
                 {
                     GameObject wacked = hit.transform.gameObject;
-                    WackObject wackedObject = wacked.GetComponent<WackObject>();
+                    WhackObject whackedObject = wacked.GetComponent<WhackObject>();
 
-                    if (!wackedObject.getTouched())
+                    if (!whackedObject.getTouched())
                     {
-                        wackedObject.setTouched(true);
+                        whackedObject.setTouched(true);
                         hitItems++;
 
-                        if (hitItems == wackables.Length)
+                        if (hitItems == whackables.Length)
                         {
                             this.finished = true;
                         }
@@ -55,17 +55,17 @@ public class WackManager : MonoBehaviour {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.tag == "Wack")
+            if (hit.transform.tag == "Whack")
             {
-                GameObject wacked = hit.transform.gameObject;
-                WackObject wackedObject = wacked.GetComponent<WackObject>();
+                GameObject whacked = hit.transform.gameObject;
+                WhackObject whackedObject = whacked.GetComponent<WhackObject>();
 
-                if (!wackedObject.getTouched())
+                if (!whackedObject.getTouched())
                 {
-                    wackedObject.setTouched(true);
+                    whackedObject.setTouched(true);
                     hitItems++;
 
-                    if (hitItems == wackables.Length)
+                    if (hitItems == whackables.Length)
                     {
                         this.finished = true;
                     }
@@ -79,9 +79,9 @@ public class WackManager : MonoBehaviour {
     {
         if(this.finished)
         {
-            for (int i = 0; i < wackables.Length; i++)
+            for (int i = 0; i < whackables.Length; i++)
             {
-                wackables[i].GetComponent<WackObject>().resetObject();
+                whackables[i].GetComponent<WhackObject>().resetObject();
             }
 
             this.finished = false;
