@@ -155,17 +155,12 @@ Prefab:
     - target: {fileID: 114918281013436848, guid: 7d95f752a2c69f24a94e289399d4e0d3,
         type: 2}
       propertyPath: testForce.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114918281013436848, guid: 7d95f752a2c69f24a94e289399d4e0d3,
         type: 2}
-      propertyPath: screenShake.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114918281013436848, guid: 7d95f752a2c69f24a94e289399d4e0d3,
-        type: 2}
-      propertyPath: screenShake.y
-      value: 0.1
+      propertyPath: testForce.z
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d95f752a2c69f24a94e289399d4e0d3, type: 2}

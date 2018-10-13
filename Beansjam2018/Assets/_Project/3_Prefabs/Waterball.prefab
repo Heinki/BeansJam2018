@@ -126,5 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yDistToSwipe: 0
   belowYDestroy: -50
+  lerpFactor: 15
   testForce: {x: 50, y: 0, z: 500}
   screenShake: {x: 0.1, y: 0.1}
+  velocity: {x: 0, y: 0, z: 0}
+  throwMultiplier: {x: 500, y: 500, z: 500}

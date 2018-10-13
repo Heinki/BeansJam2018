@@ -6,17 +6,25 @@ public class WaterballController : MonoBehaviour {
 
     public float yDistToSwipe;
     public float belowYDestroy;
+    public float lerpFactor;
     public Vector3 testForce;
     public Vector2 screenShake;
+    public Vector3 velocity;
+    public Vector3 throwMultiplier;
 
     //Private References
     Rigidbody rb;
 
     //Private Logic
     private bool waterballTouched = false;
+    private bool throwable = true;
+    private bool touched = false;
 
     private Vector3 firstTouch;
     private Vector3 lastTouch;
+
+    private Vector2 fromTouch, toTouch;
+    private float fromToTimeDiff;
 
     // Use this for initialization
     void Start () {
@@ -33,7 +41,7 @@ public class WaterballController : MonoBehaviour {
             rb.useGravity = true;
         }
         CheckForSwipe();
-        CheckWaterBallTouch();
+        //CheckWaterBallTouch();
         CheckForSelfDestroy();
     }
 
@@ -72,7 +80,45 @@ public class WaterballController : MonoBehaviour {
 
     private void CheckForSwipe()
     {
-        if(Input.touchCount == 1)
+
+        if (Input.touchCount == 1 && throwable)
+        {
+            touched = true;
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10f));
+            this.transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime * lerpFactor) ;
+            velocity = new Vector3(touchPos.x - transform.position.x, 0f, touchPos.y - transform.position.y);
+        }
+        if (Input.touchCount == 0 && touched)
+        {
+            touched = false;
+            throwable = false;
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().waterball_shot = true;
+            rb.useGravity = true;
+            Debug.Log("FINAL FORCE:" + new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z));
+            rb.AddRelativeForce(new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z), ForceMode.Force);
+            rb.AddRelativeTorque(new Vector3(velocity.z * throwMultiplier.z, velocity.x * throwMultiplier.x, 0f), ForceMode.Force);
+        }
+
+        //MOUSEMOUSE
+        if (Input.GetMouseButton(0) && throwable)
+        {
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+            this.transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime * lerpFactor);
+            velocity = new Vector3(touchPos.x - transform.position.x, 0f, touchPos.y - transform.position.y);
+            Debug.Log(velocity);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            throwable = false;
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().waterball_shot = true;
+            rb.useGravity = true;
+            Debug.Log("FINAL FORCE:" + new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z));
+            rb.AddRelativeForce(new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z), ForceMode.Force);
+        }
+
+
+        /*if(Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
             if(touch.phase == TouchPhase.Began)
@@ -95,7 +141,7 @@ public class WaterballController : MonoBehaviour {
                     AddForceToBall(new Vector2(xDist, yDist));
                 }
             }
-        }
+        }*/
     }
 
     private void AddForceToBall(Vector2 force)
