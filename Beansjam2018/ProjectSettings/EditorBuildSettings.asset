@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/1_Scenes/SwipeKotze.unity
     guid: 5261002c03cca9d4697cef54168d07e4
+  - enabled: 1
+    path: Assets/_Project/1_Scenes/Motion.unity
+    guid: c4588b550d177c24b93e44a18fb4309d
   m_configObjects: {}

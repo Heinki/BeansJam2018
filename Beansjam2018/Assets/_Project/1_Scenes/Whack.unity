@@ -156,6 +156,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -202,6 +206,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -247,6 +255,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -360,6 +372,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -405,6 +421,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -541,6 +561,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -586,6 +610,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -633,6 +661,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -678,6 +710,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -725,6 +761,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -770,6 +810,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -817,6 +861,10 @@ Prefab:
       propertyPath: m_Name
       value: Wack (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
   m_IsPrefabAsset: 0
@@ -858,6 +906,10 @@ Prefab:
     - target: {fileID: 4834555273772722, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
@@ -904,6 +956,10 @@ Prefab:
     - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
       propertyPath: m_Name
       value: Wack (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684890836966566, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
+      propertyPath: m_TagString
+      value: Whack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106fea5eaf75ab24abd8fdc36be90094, type: 2}
