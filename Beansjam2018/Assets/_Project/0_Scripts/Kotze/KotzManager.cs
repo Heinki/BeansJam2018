@@ -7,9 +7,11 @@ public class KotzManager : MonoBehaviour {
     public GameObject kotzList;
     private bool gameSolved = false;
 
+    private GameObject currKotzList;
+
 	// Use this for initialization
 	void Start () {
-        
+        currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
     }
 	
 	// Update is called once per frame
@@ -24,13 +26,15 @@ public class KotzManager : MonoBehaviour {
             {
                 if (hit.transform.tag == "Kotze")
                 {
-                    kotzList.GetComponent<KotzListe>().kotzListe.Remove(hit.transform.gameObject);
+                    currKotzList.GetComponent<KotzListe>().kotzListe.Remove(hit.transform.gameObject);
                     Destroy(hit.transform.gameObject);
                 }
             }
         }
-        if(kotzList.GetComponent<KotzListe>().kotzListe.Count == 0)
+        if(currKotzList.GetComponent<KotzListe>().kotzListe.Count == 0)
         {
+            Destroy(currKotzList);
+            currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
             gameSolved = true;
         }
     }

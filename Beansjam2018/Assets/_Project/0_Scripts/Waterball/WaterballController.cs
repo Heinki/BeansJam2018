@@ -7,6 +7,7 @@ public class WaterballController : MonoBehaviour {
     public float yDistToSwipe;
     public float belowYDestroy;
     public Vector3 testForce;
+    public Vector2 screenShake;
 
     //Private References
     Rigidbody rb;
@@ -110,9 +111,9 @@ public class WaterballController : MonoBehaviour {
     {
         if(other.tag == "Fire")
         {
-            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().fireList.Remove(other.gameObject);
+            iTween.ShakePosition(Camera.current.gameObject, iTween.Hash("y", screenShake.y, "x", screenShake.x, "time", 0.3f));
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
     }
-
 }

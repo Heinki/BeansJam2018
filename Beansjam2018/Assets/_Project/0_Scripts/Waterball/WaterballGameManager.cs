@@ -7,7 +7,8 @@ public class WaterballGameManager : MonoBehaviour {
     public Vector3 spawnPos;
     public GameObject waterballPrefab;
     public float respawnTime;
-    public List<GameObject> fireList;
+    public GameObject fireListPrefab;
+    public GameObject currFireList;
 
     public bool waterball_shot = false;
     public bool game_solved = false;
@@ -17,7 +18,7 @@ public class WaterballGameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        currFireList = Instantiate(fireListPrefab, fireListPrefab.transform.position, fireListPrefab.transform.rotation) as GameObject;
 	}
 	
 	// Update is called once per frame
@@ -32,9 +33,11 @@ public class WaterballGameManager : MonoBehaviour {
                 waterball_shot = false;
             }
         }
-        if(fireList.Count == 0)
+        if(currFireList.GetComponent<FireList>().fireList.Count == 0)
         {
-            GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "GAME SOLVED";
+            Destroy(currFireList);
+            currFireList = Instantiate(fireListPrefab, fireListPrefab.transform.position, fireListPrefab.transform.rotation) as GameObject;
+            //GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "GAME SOLVED";
         }
 	}
 
