@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class SwipeControl : MonoBehaviour {
 
-    enum CurrGame { game1, game2, game3, game4 };
-
     public Transform camPosGame1, camPosGame2, camPosGame3, camPosGame4;
     public Transform camPosBetween12, camPosBetween23, camPosBetween34, camPosBetween41;
 
@@ -22,10 +20,7 @@ public class SwipeControl : MonoBehaviour {
     private bool cameraMoving = false;
     private bool transitionReached = false;
     private bool dirRight = false;
-
-    private Text debug;
-
-    private CurrGame currGame;
+    
 
     float timer;
     float timerMax;
@@ -34,17 +29,13 @@ public class SwipeControl : MonoBehaviour {
 
     private void Start()
     {
-        currGame = CurrGame.game1;
-        debug = GameObject.Find("Debug").GetComponent<Text>();
     }
 
     void Update()
     {
-        //checkSwipe();
+        checkSwipe();
         KeyboardMovement();
         checkAnimation();
-        Debug.Log(transitionReached);
-       // GameObject.FindGameObjectWithTag("vcam").GetComponent<Ci>
     }
 
     void KeyboardMovement()
@@ -54,23 +45,22 @@ public class SwipeControl : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.D))
             {
                 dirRight = true;
-                debug.text = "SWIPE RIGHT";
-                switch (currGame)
+                switch (GameManager.currGame)
                 {
-                    case CurrGame.game1:
-                        currGame = CurrGame.game2;
+                    case GameManager.CurrGame.game1:
+                        GameManager.currGame = GameManager.CurrGame.game2;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game2:
-                        currGame = CurrGame.game3;
+                    case GameManager.CurrGame.game2:
+                        GameManager.currGame = GameManager.CurrGame.game3;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game3:
-                        currGame = CurrGame.game4;
+                    case GameManager.CurrGame.game3:
+                        GameManager.currGame = GameManager.CurrGame.game4;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game4:
-                        currGame = CurrGame.game1;
+                    case GameManager.CurrGame.game4:
+                        GameManager.currGame = GameManager.CurrGame.game1;
                         cameraMoving = true;
                         break;
                 }
@@ -78,23 +68,22 @@ public class SwipeControl : MonoBehaviour {
             else if ((Input.GetKeyDown(KeyCode.A)))
             {
                 dirRight = false;
-                debug.text = "SWIPE LEFT";
-                switch (currGame)
+                switch (GameManager.currGame)
                 {
-                    case CurrGame.game1:
-                        currGame = CurrGame.game4;
+                    case GameManager.CurrGame.game1:
+                        GameManager.currGame = GameManager.CurrGame.game4;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game2:
-                        currGame = CurrGame.game1;
+                    case GameManager.CurrGame.game2:
+                        GameManager.currGame = GameManager.CurrGame.game1;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game3:
-                        currGame = CurrGame.game2;
+                    case GameManager.CurrGame.game3:
+                        GameManager.currGame = GameManager.CurrGame.game2;
                         cameraMoving = true;
                         break;
-                    case CurrGame.game4:
-                        currGame = CurrGame.game3;
+                    case GameManager.CurrGame.game4:
+                        GameManager.currGame = GameManager.CurrGame.game3;
                         cameraMoving = true;
                         break;
                 }
@@ -110,54 +99,54 @@ public class SwipeControl : MonoBehaviour {
             {
                 if (dirRight)
                 {
-                    switch (currGame)
+                    switch (GameManager.currGame)
                     {
-                        case CurrGame.game1:
+                        case GameManager.CurrGame.game1:
                             TranslateCam(camPosBetween41, !transitionReached);
                             break;
-                        case CurrGame.game2:
+                        case GameManager.CurrGame.game2:
                             TranslateCam(camPosBetween12, !transitionReached);
                             break;
-                        case CurrGame.game3:
+                        case GameManager.CurrGame.game3:
                             TranslateCam(camPosBetween23, !transitionReached);
                             break;
-                        case CurrGame.game4:
+                        case GameManager.CurrGame.game4:
                             TranslateCam(camPosBetween34, !transitionReached);
                             break;
                     }
                 }
                 else
                 {
-                    switch (currGame)
+                    switch (GameManager.currGame)
                     {
-                        case CurrGame.game1:
+                        case GameManager.CurrGame.game1:
                             TranslateCam(camPosBetween12, !transitionReached);
                             break;
-                        case CurrGame.game2:
+                        case GameManager.CurrGame.game2:
                             TranslateCam(camPosBetween23, !transitionReached);
                             break;
-                        case CurrGame.game3:
+                        case GameManager.CurrGame.game3:
                             TranslateCam(camPosBetween34, !transitionReached);
                             break;
-                        case CurrGame.game4:
+                        case GameManager.CurrGame.game4:
                             TranslateCam(camPosBetween41, !transitionReached);
                             break;
                     }
                 }
             } else
             {
-                    switch (currGame)
+                    switch (GameManager.currGame)
                     {
-                        case CurrGame.game1:
+                        case GameManager.CurrGame.game1:
                             TranslateCam(camPosGame1, !transitionReached);
                             break;
-                        case CurrGame.game2:
+                        case GameManager.CurrGame.game2:
                             TranslateCam(camPosGame2, !transitionReached);
                             break;
-                        case CurrGame.game3:
+                        case GameManager.CurrGame.game3:
                             TranslateCam(camPosGame3, !transitionReached);
                             break;
-                        case CurrGame.game4:
+                        case GameManager.CurrGame.game4:
                             TranslateCam(camPosGame4, !transitionReached);
                             break;
                     }
@@ -172,7 +161,6 @@ public class SwipeControl : MonoBehaviour {
             if ((this.transform.position - translateToTransform.position).magnitude < minDist)
             {
                 transitionReached = true;
-                Debug.Log("TRANSITIONDONE!");
             }
         } else
         {
@@ -187,87 +175,88 @@ public class SwipeControl : MonoBehaviour {
 
     void checkSwipe()
     {
-        // Track a single touch as a direction control.
-        if (Input.touchCount > 0)
+        if (!cameraMoving)
         {
-            Touch touch = Input.GetTouch(0);
-
-            // Handle finger movements based on touch phase.
-            switch (touch.phase)
+            // Track a single touch as a direction control.
+            if (Input.touchCount > 0)
             {
-                // Record initial touch position.
-                case TouchPhase.Began:
-                    startPos = touch.position;
-                    directionChosen = false;
-                    break;
+                Touch touch = Input.GetTouch(0);
 
-                // Determine direction by comparing the current touch position with the initial one.
-                case TouchPhase.Moved:
-                    direction = touch.position - startPos;
-                    break;
-
-                // Report that a direction has been chosen when the finger is lifted.
-                case TouchPhase.Ended:
-                    directionChosen = true;
-                    break;
-            }
-
-            if (directionChosen)
-            {
-                if (startPos.y <= 400)
+                // Handle finger movements based on touch phase.
+                switch (touch.phase)
                 {
-                    anim = true;
-                    if (Mathf.Sign(direction.x) <= 0)
-                    {
-                        dirRight = true;
-                        debug.text = "SWIPE RIGHT";
-                        switch (currGame)
-                        {
-                            case CurrGame.game1:
-                                currGame = CurrGame.game2;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game2:
-                                currGame = CurrGame.game3;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game3:
-                                currGame = CurrGame.game4;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game4:
-                                currGame = CurrGame.game1;
-                                cameraMoving = true;
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        dirRight = false;
-                        debug.text = "SWIPE LEFT";
-                        switch (currGame)
-                        {
-                            case CurrGame.game1:
-                                currGame = CurrGame.game4;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game2:
-                                currGame = CurrGame.game1;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game3:
-                                currGame = CurrGame.game2;
-                                cameraMoving = true;
-                                break;
-                            case CurrGame.game4:
-                                currGame = CurrGame.game3;
-                                cameraMoving = true;
-                                break;
-                        }
-                    }
+                    // Record initial touch position.
+                    case TouchPhase.Began:
+                        startPos = touch.position;
+                        directionChosen = false;
+                        break;
+
+                    // Determine direction by comparing the current touch position with the initial one.
+                    case TouchPhase.Moved:
+                        direction = touch.position - startPos;
+                        break;
+
+                    // Report that a direction has been chosen when the finger is lifted.
+                    case TouchPhase.Ended:
+                        directionChosen = true;
+                        break;
                 }
-                
+
+                if (directionChosen)
+                {
+                    if (startPos.y <= 400)
+                    {
+                        anim = true;
+                        if (Mathf.Sign(direction.x) <= 0)
+                        {
+                            dirRight = true;
+                            switch (GameManager.currGame)
+                            {
+                                case GameManager.CurrGame.game1:
+                                    GameManager.currGame = GameManager.CurrGame.game2;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game2:
+                                    GameManager.currGame = GameManager.CurrGame.game3;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game3:
+                                    GameManager.currGame = GameManager.CurrGame.game4;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game4:
+                                    GameManager.currGame = GameManager.CurrGame.game1;
+                                    cameraMoving = true;
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            dirRight = false;
+                            switch (GameManager.currGame)
+                            {
+                                case GameManager.CurrGame.game1:
+                                    GameManager.currGame = GameManager.CurrGame.game4;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game2:
+                                    GameManager.currGame = GameManager.CurrGame.game1;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game3:
+                                    GameManager.currGame = GameManager.CurrGame.game2;
+                                    cameraMoving = true;
+                                    break;
+                                case GameManager.CurrGame.game4:
+                                    GameManager.currGame = GameManager.CurrGame.game3;
+                                    cameraMoving = true;
+                                    break;
+                            }
+                        }
+                    }
+
+                }
             }
-        } 
+        }
     }
 }

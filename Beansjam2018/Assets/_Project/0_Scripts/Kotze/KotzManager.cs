@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KotzManager : MonoBehaviour {
+public class KotzManager : MonoBehaviour, IProblem {
 
     public GameObject kotzList;
-    private bool gameSolved = false;
+    public bool game_solved = false;
 
     private GameObject currKotzList;
 
 	// Use this for initialization
 	void Start () {
+        GameManager.IncreaseAmountOfIssues();
         currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
     }
 	
@@ -34,8 +35,17 @@ public class KotzManager : MonoBehaviour {
         if(currKotzList.GetComponent<KotzListe>().kotzListe.Count == 0)
         {
             Destroy(currKotzList);
-            currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
-            gameSolved = true;
+            game_solved = true;
+            GameManager.DecreaseAmountOfIssues();
         }
+    }
+
+
+    public void ResetIssue()
+    {
+        game_solved = false;
+        currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
+        GameManager.IncreaseAmountOfIssues();
+
     }
 }

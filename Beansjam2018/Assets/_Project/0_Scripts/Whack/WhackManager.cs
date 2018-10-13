@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class WhackManager : MonoBehaviour {
+public class WhackManager : MonoBehaviour, IProblem {
 
     public AudioSource fx_punch;
 
     Ray ray;
     RaycastHit hit;
     GameObject[] whackables;
-    bool finished = false;
+    public bool game_solved = false;
     int hitItems;
 
 
     // Use this for initialization
     void Start () {
+        GameManager.IncreaseAmountOfIssues();
         whackables = GameObject.FindGameObjectsWithTag("Whack");
         hitItems = 0;
     }
@@ -45,7 +46,8 @@ public class WhackManager : MonoBehaviour {
 
                         if (hitItems == whackables.Length)
                         {
-                            this.finished = true;
+                            this.game_solved = true;
+                            GameManager.DecreaseAmountOfIssues();
                         }
                     }
                 }
@@ -71,7 +73,8 @@ public class WhackManager : MonoBehaviour {
 
                     if (hitItems == whackables.Length)
                     {
-                        this.finished = true;
+                        this.game_solved = true;
+                        GameManager.DecreaseAmountOfIssues();
                     }
                 }
 
@@ -79,16 +82,17 @@ public class WhackManager : MonoBehaviour {
         }
     }
 
-    void resetWhack()
+    public void ResetIssue()
     {
-        if(this.finished)
+        if(this.game_solved)
         {
             for (int i = 0; i < whackables.Length; i++)
             {
                 whackables[i].GetComponent<WhackObject>().resetObject();
             }
 
-            this.finished = false;
+            this.game_solved = false;
+            GameManager.IncreaseAmountOfIssues();
         }
        
     }

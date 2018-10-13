@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MotionManager : MonoBehaviour {
+public class MotionManager : MonoBehaviour, IProblem {
 
     float accelerometerUpdateInterval = 1.0f / 60.0f;
     float lowPassKernelWidthInSeconds = 1.0f;
     float shakeDetectionThreshold = 2.0f;
+    public bool game_solved = false;
 
     float lowPassFilterFactor;
     Vector3 lowPassValue;
     GameObject[] flies;
-
+   
     void Start()
     {
+        GameManager.IncreaseAmountOfIssues();
         lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
         shakeDetectionThreshold *= shakeDetectionThreshold;
         lowPassValue = Input.acceleration;
@@ -33,8 +35,20 @@ public class MotionManager : MonoBehaviour {
             {
                 FlyObject fly = flies[i].GetComponent<FlyObject>();
                 fly.setPositionOutsideOfScreen();
-
+                game_solved = true;
+                GameManager.DecreaseAmountOfIssues();
             }
+        }
+    }
+
+    public void ResetIssue()
+    {
+        for (int i = 0; i < flies.Length; i++)
+        {
+            FlyObject fly = flies[i].GetComponent<FlyObject>();
+            fly.ResetMotion();
+            game_solved = false;
+            GameManager.IncreaseAmountOfIssues();
         }
     }
 }

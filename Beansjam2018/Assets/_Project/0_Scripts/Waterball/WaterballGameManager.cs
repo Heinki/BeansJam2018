@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterballGameManager : MonoBehaviour {
+public class WaterballGameManager : MonoBehaviour, IProblem {
 
-    public Vector3 spawnPos;
     public GameObject waterballPrefab;
     public float respawnTime;
     public GameObject fireListPrefab;
     public GameObject currFireList;
-
+    public Transform fireStartPos;
+    public Transform waterballoonStartPos;
     public AudioSource fx_fire;
 
     public bool waterball_shot = false;
@@ -21,7 +21,10 @@ public class WaterballGameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        currFireList = Instantiate(fireListPrefab, fireListPrefab.transform.position, fireListPrefab.transform.rotation) as GameObject;
+        GameManager.IncreaseAmountOfIssues();
+        Debug.Log(fireStartPos.position);
+        currFireList = Instantiate(fireListPrefab, fireStartPos.position, fireListPrefab.transform.rotation, fireStartPos.transform) as GameObject;
+        //currFireList = Instantiate(fireListPrefab, fireStartPos.transform.position, fireListPrefab.transform.rotation) as GameObject;
         fx_fire.Play();
         fireNumStart = currFireList.GetComponent<FireList>().fireList.Count;
     }
@@ -41,10 +44,18 @@ public class WaterballGameManager : MonoBehaviour {
         if(currFireList.GetComponent<FireList>().fireList.Count == 0)
         {
             Destroy(currFireList);
-            currFireList = Instantiate(fireListPrefab, fireListPrefab.transform.position, fireListPrefab.transform.rotation) as GameObject;
-            //GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "GAME SOLVED";
+            GameManager.DecreaseAmountOfIssues();
+            game_solved = true;
+
         }
 	}
+
+    public void ResetIssue()
+    {
+        currFireList = Instantiate(fireListPrefab, fireStartPos.transform.position, fireListPrefab.transform.rotation) as GameObject;
+        GameManager.IncreaseAmountOfIssues();
+        game_solved = false;
+    }
 
     public void UpdateFireSoundVol()
     {
@@ -54,6 +65,6 @@ public class WaterballGameManager : MonoBehaviour {
 
     private void Respawn()
     {
-        Instantiate(waterballPrefab, spawnPos, waterballPrefab.transform.rotation);
+        Instantiate(waterballPrefab, waterballoonStartPos.position, waterballPrefab.transform.rotation);
     }
 }
