@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterballController : MonoBehaviour {
 
     public float yDistToSwipe;
+    public Vector3 testForce;
 
     //Private References
     Rigidbody rb;
@@ -22,6 +23,11 @@ public class WaterballController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddRelativeForce(testForce, ForceMode.Force);
+            rb.useGravity = true;
+        }
         CheckForSwipe();
         CheckWaterBallTouch();
 
@@ -90,10 +96,10 @@ public class WaterballController : MonoBehaviour {
             {
                 lastTouch = touch.position;
                 //Calculate X and Y Touch Distances
-                float xDist = firstTouch.x - lastTouch.x;
-                float yDist = firstTouch.y - lastTouch.y;
+                float xDist = -(firstTouch.x - lastTouch.x);
+                float yDist = -(firstTouch.y - lastTouch.y);
 
-                if(yDist > yDistToSwipe && waterballTouched)
+                if(yDist > yDistToSwipe)
                 {
                     AddForceToBall(new Vector2(xDist, yDist));
                 }
@@ -103,7 +109,9 @@ public class WaterballController : MonoBehaviour {
 
     private void AddForceToBall(Vector2 force)
     {
-        rb.AddForce(new Vector3(force.x, 0f, force.y));
+        GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "Debug: Force x: " + System.Math.Round(force.x,2) + " y: " + System.Math.Round(force.y,2);
+        rb.useGravity = true;
+        rb.AddRelativeForce(new Vector3(force.x, 0f, force.y));
     }
 
 }

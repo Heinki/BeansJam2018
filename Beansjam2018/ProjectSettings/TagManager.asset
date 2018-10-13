@@ -6,6 +6,7 @@ TagManager:
   tags:
   - waterball
   - Wack
+  - Debug
   layers:
   - Default
   - TransparentFX
