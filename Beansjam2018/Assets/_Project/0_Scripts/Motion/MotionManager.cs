@@ -11,14 +11,14 @@ public class MotionManager : MonoBehaviour {
 
     float lowPassFilterFactor;
     Vector3 lowPassValue;
-    Text debugText;
+    GameObject[] flies;
 
     void Start()
     {
         lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
         shakeDetectionThreshold *= shakeDetectionThreshold;
         lowPassValue = Input.acceleration;
-        debugText = GameObject.Find("Debug").GetComponent<Text>();
+        flies = GameObject.FindGameObjectsWithTag("Flies");
     }
 
     void Update()
@@ -29,9 +29,12 @@ public class MotionManager : MonoBehaviour {
 
         if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
         {
-            Debug.Log("Shake event detected at time " + Time.time);
-            debugText.text = "SHAKE IT!";
+            for(int i = 0; i < flies.Length; i++)
+            {
+                FlyObject fly = flies[i].GetComponent<FlyObject>();
+                fly.setPositionOutsideOfScreen();
 
+            }
         }
     }
 }
