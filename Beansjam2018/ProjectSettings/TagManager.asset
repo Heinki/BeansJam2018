@@ -12,6 +12,8 @@ TagManager:
   - Ice
   - Flies
   - Whack
+  - Wack
+  - waterball_booth
   layers:
   - Default
   - TransparentFX

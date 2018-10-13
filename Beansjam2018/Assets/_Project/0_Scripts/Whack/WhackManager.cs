@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WhackManager : MonoBehaviour {
 
+    public AudioSource fx_punch;
+
     Ray ray;
     RaycastHit hit;
     GameObject[] whackables;
@@ -37,6 +39,7 @@ public class WhackManager : MonoBehaviour {
 
                     if (!whackedObject.getTouched())
                     {
+                        fx_punch.Play();
                         whackedObject.setTouched(true);
                         hitItems++;
 
@@ -62,6 +65,7 @@ public class WhackManager : MonoBehaviour {
 
                 if (!whackedObject.getTouched())
                 {
+                    fx_punch.Play();
                     whackedObject.setTouched(true);
                     hitItems++;
 

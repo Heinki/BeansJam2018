@@ -164,6 +164,10 @@ public class WaterballController : MonoBehaviour {
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().UpdateFireSoundVol();
             Destroy(other.gameObject);
+        } else if(other.tag == "waterball_booth")
+        {
+            Destroy(this.gameObject);
+            //SPLASH PARTICLE & SOUND
         }
     }
 }
