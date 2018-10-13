@@ -32,8 +32,8 @@ public class WhackManager : MonoBehaviour {
             {
                 if (hit.transform.tag == "Whack")
                 {
-                    GameObject wacked = hit.transform.gameObject;
-                    WhackObject whackedObject = wacked.GetComponent<WhackObject>();
+                    GameObject whacked = hit.transform.gameObject;
+                    WhackObject whackedObject = whacked.GetComponent<WhackObject>();
 
                     if (!whackedObject.getTouched())
                     {

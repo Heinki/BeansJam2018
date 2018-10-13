@@ -158,6 +158,7 @@ public class WaterballController : MonoBehaviour {
         if(other.tag == "Fire")
         {
             iTween.ShakePosition(Camera.current.gameObject, iTween.Hash("y", screenShake.y, "x", screenShake.x, "time", 0.3f));
+            Handheld.Vibrate();
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
