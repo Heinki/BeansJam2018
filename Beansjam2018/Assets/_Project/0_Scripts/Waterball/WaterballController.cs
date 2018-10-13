@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterballController : MonoBehaviour {
 
     public float yDistToSwipe;
+    public float belowYDestroy;
     public Vector3 testForce;
 
     //Private References
@@ -26,57 +27,46 @@ public class WaterballController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddRelativeForce(testForce, ForceMode.Force);
+            rb.AddRelativeTorque(testForce, ForceMode.Force);
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().waterball_shot = true;
             rb.useGravity = true;
         }
         CheckForSwipe();
         CheckWaterBallTouch();
+        CheckForSelfDestroy();
+    }
 
+    private void CheckForSelfDestroy()
+    {
+        if(this.transform.position.y < belowYDestroy)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void CheckWaterBallTouch()
     {
         //MAUSINPUT
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount == 1)
         {
+            Touch touch = Input.GetTouch(0);
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
             if(Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.tag == "waterball")
                 {
                     waterballTouched = true;
-                    Debug.Log("waterball clicked!!");
                 }
             }
-        } else if (Input.touchCount == 0 || Input.GetMouseButtonUp(0))
+        } else if (Input.touchCount == 0)
         {
             if (waterballTouched)
             {
                 waterballTouched = false;
             }
         } 
-        //TOUCHINPUT || 
-        if(Input.touchCount == 1){
-            Touch touch = Input.GetTouch(0);
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "waterball")
-                {
-                    waterballTouched = true;
-                    Debug.Log("waterball clicked!!");
-                }
-            }
-        } else if(Input.touchCount == 0)
-        {
-            if (waterballTouched)
-            {
-                waterballTouched = false;
-            }
-        }
     }
 
     private void CheckForSwipe()
@@ -99,7 +89,7 @@ public class WaterballController : MonoBehaviour {
                 float xDist = -(firstTouch.x - lastTouch.x);
                 float yDist = -(firstTouch.y - lastTouch.y);
 
-                if(yDist > yDistToSwipe)
+                if(yDist > yDistToSwipe && waterballTouched)
                 {
                     AddForceToBall(new Vector2(xDist, yDist));
                 }
@@ -109,9 +99,20 @@ public class WaterballController : MonoBehaviour {
 
     private void AddForceToBall(Vector2 force)
     {
-        GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "Debug: Force x: " + System.Math.Round(force.x,2) + " y: " + System.Math.Round(force.y,2);
+        GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().waterball_shot = true;
+        //GameObject.FindGameObjectWithTag("Debug").GetComponent<TextMesh>().text = "Debug: Force x: " + System.Math.Round(force.x,2) + " y: " + System.Math.Round(force.y,2);
         rb.useGravity = true;
+        rb.AddRelativeTorque(testForce, ForceMode.Force);
         rb.AddRelativeForce(new Vector3(force.x, 0f, force.y));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Fire")
+        {
+            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().fireList.Remove(other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 
 }
