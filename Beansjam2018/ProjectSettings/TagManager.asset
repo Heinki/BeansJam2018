@@ -9,6 +9,7 @@ TagManager:
   - Debug
   - Fire
   - WaterballGamemanager
+  - Kotze
   layers:
   - Default
   - TransparentFX

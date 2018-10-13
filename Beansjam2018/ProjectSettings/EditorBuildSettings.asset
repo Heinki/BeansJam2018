@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/1_Scenes/Wack.unity
     guid: 39cf2faa82cc3ba409c6ca6ef2ac2e8d
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/1_Scenes/SwipeFireGame.unity
     guid: d76158158e6ba4f4cbc8f46452a8ce22
+  - enabled: 1
+    path: Assets/_Project/1_Scenes/SwipeKotze.unity
+    guid: 5261002c03cca9d4697cef54168d07e4
   m_configObjects: {}
