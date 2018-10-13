@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KotzManager : MonoBehaviour {
 
-    
+    public GameObject kotzList;
     private bool gameSolved = false;
 
 	// Use this for initialization
@@ -24,12 +24,12 @@ public class KotzManager : MonoBehaviour {
             {
                 if (hit.transform.tag == "Kotze")
                 {
-                    listKotze.Remove(hit.transform.gameObject);
+                    kotzList.GetComponent<KotzListe>().kotzListe.Remove(hit.transform.gameObject);
                     Destroy(hit.transform.gameObject);
                 }
             }
         }
-        if(listKotze.Count == 0)
+        if(kotzList.GetComponent<KotzListe>().kotzListe.Count == 0)
         {
             gameSolved = true;
         }
