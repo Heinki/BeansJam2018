@@ -15,6 +15,7 @@ TagManager:
   - Wack
   - waterball_booth
   - Swipecontrol
+  - vcam
   layers:
   - Default
   - TransparentFX

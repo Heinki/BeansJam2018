@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine.Utility;
 
 
 public class SwipeControl : MonoBehaviour {
@@ -17,27 +18,18 @@ public class SwipeControl : MonoBehaviour {
     private void Start()
     {
         debug = GameObject.Find("Debug").GetComponent<Text>();
-        timerMax = 0.5f;
     }
 
     void Update()
     {
         checkSwipe();
-        checkAnimation();
+        //checkAnimation();
+       // GameObject.FindGameObjectWithTag("vcam").GetComponent<Ci>
     }
 
     void checkAnimation()
     {
-        if(anim && timer <= timerMax)
-        {
-            timer += Time.deltaTime;
-            transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
-        } 
-        else
-        {
-            anim = false;
-            timer = 0;
-        }
+        
     }
 
     void checkSwipe()
@@ -75,12 +67,12 @@ public class SwipeControl : MonoBehaviour {
                     if (Mathf.Sign(direction.x) <= 0)
                     {
                         debug.text = "SWIPE RIGHT";
-                        cameraSpeed = 7.5f;
+                        
                     }
                     else
                     {
                         debug.text = "SWIPE LEFT";
-                        cameraSpeed = -7.5f;
+                        
                     }
                 }
                 
