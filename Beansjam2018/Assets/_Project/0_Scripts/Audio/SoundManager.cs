@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour {
     public List<AudioClip> sfxList_Aua;
     public List<AudioClip> sfxList_Kotze;
     public List<AudioClip> sfxList_Welcome;
+    public List<AudioClip> sfxList_GameOver;
 
     public AudioClip sfx_Clean;
     public AudioClip sfx_Crying;
@@ -27,6 +28,8 @@ public class SoundManager : MonoBehaviour {
     public float lowPitchRange = .95f;
     public float highPitchRange = 1.05f;
 
+    private int count = 0;
+
     // Use this for initialization
 
     void Awake () {
@@ -38,8 +41,9 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-	}
-	
+        PlayRandomSFX_WELCOME();
+    }
+
     public void PlaySingle (AudioClip clip)
     {
         fxSource.clip = clip;
@@ -73,6 +77,22 @@ public class SoundManager : MonoBehaviour {
     {
         int randomIndex = Random.Range(0, sfxList_Aua.Count);
         fxSource.clip = sfxList_Aua[randomIndex];
+        PlayChosenSFX();
+    }
+
+    public void PlayRandomSFX_GAMEOVER()
+    {
+        if (count == 0)
+        {
+            fxSource.clip = sfxList_GameOver[0];
+            count++;
+        }
+        else
+        {
+            int randomIndex = Random.Range(0, sfxList_GameOver.Count);
+            fxSource.clip = sfxList_GameOver[randomIndex];
+        }
+        
         PlayChosenSFX();
     }
 

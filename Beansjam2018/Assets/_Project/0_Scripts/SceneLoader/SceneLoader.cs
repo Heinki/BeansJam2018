@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadGameOverScene ()
     {
+        SoundManager.instance.PlayRandomSFX_GAMEOVER();
         SceneManager.LoadScene("GameOver");
     }
 
@@ -29,6 +30,8 @@ public class SceneLoader : MonoBehaviour {
             GameManager.ResetHighScore();
             Destroy(manager);
         }
+        SoundManager.instance.PlayRandomSFX_WELCOME();
+
         SceneManager.LoadScene("Start");
     }
 }
