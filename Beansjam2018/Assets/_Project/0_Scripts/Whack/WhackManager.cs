@@ -43,6 +43,7 @@ public class WhackManager : MonoBehaviour, IProblem {
 
                     if (!whackedObject.getTouched())
                     {
+                        SoundManager.instance.PlayRandomSFX_AUA();
                         SoundManager.instance.PlaySFX_PUNCH();
                         whackedObject.setTouched(true);
                         hitItems++;
@@ -75,6 +76,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                 if (!whackedObject.getTouched())
                 {
                     SoundManager.instance.PlaySFX_PUNCH();
+                    SoundManager.instance.PlayRandomSFX_AUA();
                     whackedObject.setTouched(true);
                     hitItems++;
 
