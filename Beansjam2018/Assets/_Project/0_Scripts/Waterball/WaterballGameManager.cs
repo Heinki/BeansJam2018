@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WaterballGameManager : MonoBehaviour, IProblem {
 
-    public GameObject waterballPrefab;
+    public GameObject waterballRedPrefab;
+    public GameObject waterballBluePrefab;
     public float respawnTime;
     public GameObject fireListPrefab;
     public GameObject currFireList;
@@ -66,6 +67,13 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
 
     private void Respawn()
     {
-        Instantiate(waterballPrefab, waterballoonStartPos.position, waterballPrefab.transform.rotation);
+        int ran = Random.Range(0, 2);
+        if (ran == 0)
+        {
+            Instantiate(waterballBluePrefab, waterballoonStartPos.position, waterballBluePrefab.transform.rotation);
+        } else
+        {
+            Instantiate(waterballRedPrefab, waterballoonStartPos.position, waterballRedPrefab.transform.rotation);
+        }
     }
 }
