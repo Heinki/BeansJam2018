@@ -22,7 +22,6 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
 	// Use this for initialization
 	void Start () {
         GameManager.IncreaseAmountOfIssues();
-        Debug.Log(fireStartPos.position);
         currFireList = Instantiate(fireListPrefab, fireStartPos.position, fireListPrefab.transform.rotation, fireStartPos.transform) as GameObject;
         //currFireList = Instantiate(fireListPrefab, fireStartPos.transform.position, fireListPrefab.transform.rotation) as GameObject;
         fx_fire.Play();
@@ -46,6 +45,7 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
             Destroy(currFireList);
             GameManager.DecreaseAmountOfIssues();
             game_solved = true;
+            GameManager.AddPoints(5.0f);
 
         }
 	}

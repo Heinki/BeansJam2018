@@ -48,6 +48,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                         {
                             this.game_solved = true;
                             GameManager.DecreaseAmountOfIssues();
+                            GameManager.AddPoints(5.0f);
                         }
                     }
                 }
@@ -75,6 +76,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                     {
                         this.game_solved = true;
                         GameManager.DecreaseAmountOfIssues();
+                        GameManager.AddPoints(5.0f);
                     }
                 }
 
@@ -84,16 +86,14 @@ public class WhackManager : MonoBehaviour, IProblem {
 
     public void ResetIssue()
     {
-        if(this.game_solved)
+        for (int i = 0; i < whackables.Length; i++)
         {
-            for (int i = 0; i < whackables.Length; i++)
-            {
-                whackables[i].GetComponent<WhackObject>().resetObject();
-            }
-
-            this.game_solved = false;
-            GameManager.IncreaseAmountOfIssues();
+            whackables[i].GetComponent<WhackObject>().resetObject();
         }
+
+        hitItems = 0;   
+        this.game_solved = false;
+        GameManager.IncreaseAmountOfIssues();
        
     }
 }

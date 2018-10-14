@@ -39,8 +39,8 @@ public class WhackObject : MonoBehaviour {
 
     public void resetObject()
     {
-        transform.position = originalPosition;
         this.setTouched(false);
         this.timer = 0;
+        transform.position = originalPosition;
     }
 }
