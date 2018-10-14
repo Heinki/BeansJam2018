@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class WhackManager : MonoBehaviour, IProblem {
 
-    public AudioSource fx_punch;
+    public GameObject boot_red;
+    public GameObject boot_green;
 
     Ray ray;
     RaycastHit hit;
@@ -16,6 +17,8 @@ public class WhackManager : MonoBehaviour, IProblem {
 
     // Use this for initialization
     void Start () {
+        boot_green.SetActive(false);
+        boot_red.SetActive(true);
         GameManager.IncreaseAmountOfIssues();
         whackables = GameObject.FindGameObjectsWithTag("Whack");
         hitItems = 0;
@@ -40,12 +43,14 @@ public class WhackManager : MonoBehaviour, IProblem {
 
                     if (!whackedObject.getTouched())
                     {
-                        fx_punch.Play();
+                        SoundManager.instance.PlaySFX_PUNCH();
                         whackedObject.setTouched(true);
                         hitItems++;
 
                         if (hitItems == whackables.Length)
                         {
+                            boot_green.SetActive(true);
+                            boot_red.SetActive(false);
                             this.game_solved = true;
                             GameManager.DecreaseAmountOfIssues();
                             GameManager.AddPoints(5.0f);
@@ -69,12 +74,14 @@ public class WhackManager : MonoBehaviour, IProblem {
 
                 if (!whackedObject.getTouched())
                 {
-                    fx_punch.Play();
+                    SoundManager.instance.PlaySFX_PUNCH();
                     whackedObject.setTouched(true);
                     hitItems++;
 
                     if (hitItems == whackables.Length)
                     {
+                        boot_green.SetActive(true);
+                        boot_red.SetActive(false);
                         this.game_solved = true;
                         GameManager.DecreaseAmountOfIssues();
                         GameManager.AddPoints(5.0f);
@@ -95,6 +102,8 @@ public class WhackManager : MonoBehaviour, IProblem {
 
         hitItems = 0;   
         this.game_solved = false;
+        boot_green.SetActive(false);
+        boot_red.SetActive(true);
         GameManager.IncreaseAmountOfIssues();
        
     }
