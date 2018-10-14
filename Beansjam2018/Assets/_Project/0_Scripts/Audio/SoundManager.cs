@@ -46,6 +46,19 @@ public class SoundManager : MonoBehaviour {
         fxSource.Play();
     }
 
+    public void Mute()
+    {
+        fxSource.volume = 0;
+        musicSource.volume = 0;
+    }
+
+    public void UnMute()
+    {
+        fxSource.volume = 1;
+        musicSource.volume = 1;
+    }
+
+
     public void RandomizeSfx (params AudioClip[] clips)
     {
         int randomIndex = Random.Range(0, clips.Length);
