@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MotionManager : MonoBehaviour, IProblem {
 
+    public GameObject girl_smile, girl_sad;
+    public GameObject tears;
+
     float accelerometerUpdateInterval = 1.0f / 60.0f;
     float lowPassKernelWidthInSeconds = 1.0f;
     float shakeDetectionThreshold = 2.0f;
@@ -21,6 +24,9 @@ public class MotionManager : MonoBehaviour, IProblem {
         shakeDetectionThreshold *= shakeDetectionThreshold;
         lowPassValue = Input.acceleration;
         flies = GameObject.FindGameObjectsWithTag("Flies");
+        girl_smile.SetActive(false);
+        girl_sad.SetActive(true);
+        tears.SetActive(true);
     }
 
     void Update()
@@ -44,7 +50,9 @@ public class MotionManager : MonoBehaviour, IProblem {
                     FlyObject fly = flies[i].GetComponent<FlyObject>();
                     fly.setPositionOutsideOfScreen();
                 }
-
+                girl_smile.SetActive(true);
+                girl_sad.SetActive(false);
+                tears.SetActive(false);
                 game_solved = true;
                 GameManager.DecreaseAmountOfIssues();
                 GameManager.AddPoints(5.0f);
@@ -60,7 +68,9 @@ public class MotionManager : MonoBehaviour, IProblem {
             FlyObject fly = flies[i].GetComponent<FlyObject>();
             fly.ResetMotion();
         }
-
+        girl_smile.SetActive(false);
+        girl_sad.SetActive(true);
+        tears.SetActive(true);
         game_solved = false;
         GameManager.IncreaseAmountOfIssues();
     }

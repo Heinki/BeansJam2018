@@ -81,7 +81,7 @@ public class WaterballController : MonoBehaviour {
             }
         }
     
-    /*
+    
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
@@ -102,17 +102,17 @@ public class WaterballController : MonoBehaviour {
                 waterballTouched = false;
             }
         } 
-        */
+        
     }
 
     private void CheckForSwipe()
     {
-        /*
+        
         if (Input.touchCount == 1 && throwable && waterballTouched)
         {
             touched = true;
             Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10f));
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 2.25f));
             this.transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime * lerpFactor) ;
             velocity = new Vector3(touchPos.x - transform.position.x, 0f, touchPos.y - transform.position.y);
         }
@@ -126,7 +126,7 @@ public class WaterballController : MonoBehaviour {
             rb.AddRelativeForce(new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z), ForceMode.Force);
             rb.AddRelativeTorque(new Vector3(velocity.z * throwMultiplier.z, velocity.x * throwMultiplier.x, 0f), ForceMode.Force);
         }
-        */
+        
         //MOUSEMOUSE
         if (Input.GetMouseButton(0) && throwable && waterballTouched)
         {
@@ -146,32 +146,6 @@ public class WaterballController : MonoBehaviour {
             rb.AddRelativeForce(new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z), ForceMode.Force);
             rb.AddRelativeTorque(new Vector3(velocity.z * throwMultiplier.z, velocity.x * throwMultiplier.x, 0f), ForceMode.Force);
         }
-
-
-        /*if(Input.touchCount == 1)
-        {
-            Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
-            {
-                firstTouch = touch.position;
-                lastTouch = touch.position;
-            }
-            else if(touch.phase == TouchPhase.Moved)
-            {
-                lastTouch = touch.position;
-            } else if(touch.phase == TouchPhase.Ended)
-            {
-                lastTouch = touch.position;
-                //Calculate X and Y Touch Distances
-                float xDist = -(firstTouch.x - lastTouch.x);
-                float yDist = -(firstTouch.y - lastTouch.y);
-
-                if(yDist > yDistToSwipe && waterballTouched)
-                {
-                    AddForceToBall(new Vector2(xDist, yDist));
-                }
-            }
-        }*/
     }
 
     private void AddForceToBall(Vector2 force)

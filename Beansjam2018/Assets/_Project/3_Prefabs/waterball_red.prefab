@@ -130,5 +130,7 @@ MonoBehaviour:
   testForce: {x: 0, y: 0, z: 100}
   screenShake: {x: 0.1, y: 0.1}
   velocity: {x: 0, y: 0, z: 0}
-  throwMultiplier: {x: 500, y: 500, z: 500}
+  throwMultiplier: {x: 1000, y: 1000, z: 1000}
   fx_watersplash: {fileID: 0}
+  prefab_Watersplash: {fileID: 1250420299241474, guid: 03f42a0292b7f2d42adc5764d70c9eea,
+    type: 2}
