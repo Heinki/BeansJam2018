@@ -179,6 +179,7 @@ public class SwipeControl : MonoBehaviour {
         if (transitioning)
         {
             iTween.MoveTo(this.transform.gameObject, iTween.Hash("position", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeInQuad));
+            iTween.RotateTo(this.transform.gameObject, iTween.Hash("rotation", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeInQuad));
             if ((this.transform.position - translateToTransform.position).magnitude < minDist)
             {
                 transitionReached = true;
@@ -186,6 +187,7 @@ public class SwipeControl : MonoBehaviour {
         } else
         {
             iTween.MoveTo(this.transform.gameObject, iTween.Hash("position", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeOutQuad));
+            iTween.RotateTo(this.transform.gameObject, iTween.Hash("rotation", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeInQuad));
             if ((this.transform.position - translateToTransform.position).magnitude < minDist)
             {
                 cameraMoving = false;
