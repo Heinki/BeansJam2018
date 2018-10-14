@@ -9,7 +9,7 @@ public class SwipeControl : MonoBehaviour {
     public Transform camPosGame1, camPosGame2, camPosGame3, camPosGame4;
     public Transform camPosBetween12, camPosBetween23, camPosBetween34, camPosBetween41;
 
-    public float camLerpFactor;
+    public float transitionTime;
     public float minDist;
 
     public Vector2 startPos;
@@ -102,16 +102,16 @@ public class SwipeControl : MonoBehaviour {
                     switch (GameManager.currGame)
                     {
                         case GameManager.CurrGame.game1:
-                            TranslateCam(camPosBetween41, !transitionReached);
+                            TranslateCam(camPosGame4, camPosBetween41, !transitionReached);
                             break;
                         case GameManager.CurrGame.game2:
-                            TranslateCam(camPosBetween12, !transitionReached);
+                            TranslateCam(camPosGame1, camPosBetween12, !transitionReached);
                             break;
                         case GameManager.CurrGame.game3:
-                            TranslateCam(camPosBetween23, !transitionReached);
+                            TranslateCam(camPosGame2, camPosBetween23, !transitionReached);
                             break;
                         case GameManager.CurrGame.game4:
-                            TranslateCam(camPosBetween34, !transitionReached);
+                            TranslateCam(camPosGame3, camPosBetween34, !transitionReached);
                             break;
                     }
                 }
@@ -120,57 +120,78 @@ public class SwipeControl : MonoBehaviour {
                     switch (GameManager.currGame)
                     {
                         case GameManager.CurrGame.game1:
-                            TranslateCam(camPosBetween12, !transitionReached);
+                            TranslateCam(camPosGame2, camPosBetween12, !transitionReached);
                             break;
                         case GameManager.CurrGame.game2:
-                            TranslateCam(camPosBetween23, !transitionReached);
+                            TranslateCam(camPosGame3, camPosBetween23, !transitionReached);
                             break;
                         case GameManager.CurrGame.game3:
-                            TranslateCam(camPosBetween34, !transitionReached);
+                            TranslateCam(camPosGame4, camPosBetween34, !transitionReached);
                             break;
                         case GameManager.CurrGame.game4:
-                            TranslateCam(camPosBetween41, !transitionReached);
+                            TranslateCam(camPosGame1, camPosBetween41, !transitionReached);
                             break;
                     }
                 }
             } else
             {
+                if (dirRight)
+                {
                     switch (GameManager.currGame)
                     {
                         case GameManager.CurrGame.game1:
-                            TranslateCam(camPosGame1, !transitionReached);
+                            TranslateCam(camPosBetween41, camPosGame1, !transitionReached);
                             break;
                         case GameManager.CurrGame.game2:
-                            TranslateCam(camPosGame2, !transitionReached);
+                            TranslateCam(camPosBetween12, camPosGame2, !transitionReached);
                             break;
                         case GameManager.CurrGame.game3:
-                            TranslateCam(camPosGame3, !transitionReached);
+                            TranslateCam(camPosBetween23, camPosGame3, !transitionReached);
                             break;
                         case GameManager.CurrGame.game4:
-                            TranslateCam(camPosGame4, !transitionReached);
+                            TranslateCam(camPosBetween34, camPosGame4, !transitionReached);
                             break;
                     }
+                } else
+                {
+                    switch (GameManager.currGame)
+                    {
+                        case GameManager.CurrGame.game1:
+                            TranslateCam(camPosBetween12, camPosGame1, !transitionReached);
+                            break;
+                        case GameManager.CurrGame.game2:
+                            TranslateCam(camPosBetween23, camPosGame2, !transitionReached);
+                            break;
+                        case GameManager.CurrGame.game3:
+                            TranslateCam(camPosBetween34, camPosGame3, !transitionReached);
+                            break;
+                        case GameManager.CurrGame.game4:
+                            TranslateCam(camPosBetween41, camPosGame4, !transitionReached);
+                            break;
+                    }
+                }
             }
         }
     }
 
-    void TranslateCam(Transform translateToTransform, bool transitioning)
+    void TranslateCam(Transform translateFromTransform, Transform translateToTransform, bool transitioning)
     {
         if (transitioning)
         {
+            iTween.MoveTo(this.transform.gameObject, iTween.Hash("position", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeInQuad));
             if ((this.transform.position - translateToTransform.position).magnitude < minDist)
             {
                 transitionReached = true;
             }
         } else
         {
+            iTween.MoveTo(this.transform.gameObject, iTween.Hash("position", translateToTransform, "time", transitionTime, "easetype", iTween.EaseType.easeOutQuad));
             if ((this.transform.position - translateToTransform.position).magnitude < minDist)
             {
                 cameraMoving = false;
                 transitionReached = false;
             }
         }
-        this.transform.position = Vector3.Lerp(this.transform.position, translateToTransform.position, Time.deltaTime * camLerpFactor);
     }
 
     void checkSwipe()

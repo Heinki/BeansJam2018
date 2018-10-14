@@ -609,7 +609,7 @@ MonoBehaviour:
   camPosBetween23: {fileID: 1143989757}
   camPosBetween34: {fileID: 866619050}
   camPosBetween41: {fileID: 1015670344}
-  camLerpFactor: 5
+  transitionTime: 1
   minDist: 0.05
   startPos: {x: 0, y: 0}
   direction: {x: 0, y: 0}
