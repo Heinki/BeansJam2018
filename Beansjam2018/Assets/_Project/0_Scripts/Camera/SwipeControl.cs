@@ -38,7 +38,7 @@ public class SwipeControl : MonoBehaviour {
         checkAnimation();
     }
 
-    void GoRight()
+    public void GoRight()
     {
         dirRight = true;
         switch (GameManager.currGame)
@@ -62,7 +62,7 @@ public class SwipeControl : MonoBehaviour {
         }
     }
 
-    void GoLeft()
+    public void GoLeft()
     {
         dirRight = false;
         switch (GameManager.currGame)
