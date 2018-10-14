@@ -11,7 +11,7 @@ public class FlyObject : MonoBehaviour {
 
 	void Start () {
         this.ice = GameObject.FindGameObjectWithTag("Ice");
-        this.speed = 3.0f;
+        this.speed = 1.5f;
         originalPosition = transform.position;
         isMoving = true;
 	}
@@ -42,7 +42,7 @@ public class FlyObject : MonoBehaviour {
 
     public void setPositionOutsideOfScreen()
     {
-        transform.position = new Vector3(25, 0, 0);
+        transform.position = new Vector3(125, 0, 0);
         setMoving(false);
     }
 

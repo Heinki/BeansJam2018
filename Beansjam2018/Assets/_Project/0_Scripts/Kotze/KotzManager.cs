@@ -32,10 +32,11 @@ public class KotzManager : MonoBehaviour, IProblem {
                 }
             }
         }
-        if(currKotzList.GetComponent<KotzListe>().kotzListe.Count == 0)
+        if(currKotzList.GetComponent<KotzListe>().kotzListe.Count == 0 && !game_solved)
         {
             Destroy(currKotzList);
             game_solved = true;
+            GameManager.AddPoints(5.0f);
             GameManager.DecreaseAmountOfIssues();
         }
     }

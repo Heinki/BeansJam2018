@@ -25,18 +25,29 @@ public class MotionManager : MonoBehaviour, IProblem {
 
     void Update()
     {
+        CheckShake();
+    }
+
+    void CheckShake()
+    {
         Vector3 acceleration = Input.acceleration;
         lowPassValue = Vector3.Lerp(lowPassValue, acceleration, lowPassFilterFactor);
         Vector3 deltaAcceleration = acceleration - lowPassValue;
 
-        if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
+
+        if (game_solved == false)
         {
-            for(int i = 0; i < flies.Length; i++)
+            if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
             {
-                FlyObject fly = flies[i].GetComponent<FlyObject>();
-                fly.setPositionOutsideOfScreen();
+                for (int i = 0; i < flies.Length; i++)
+                {
+                    FlyObject fly = flies[i].GetComponent<FlyObject>();
+                    fly.setPositionOutsideOfScreen();
+                }
+
                 game_solved = true;
                 GameManager.DecreaseAmountOfIssues();
+                GameManager.AddPoints(5.0f);
             }
         }
     }
@@ -47,8 +58,9 @@ public class MotionManager : MonoBehaviour, IProblem {
         {
             FlyObject fly = flies[i].GetComponent<FlyObject>();
             fly.ResetMotion();
-            game_solved = false;
-            GameManager.IncreaseAmountOfIssues();
         }
+
+        game_solved = false;
+        GameManager.IncreaseAmountOfIssues();
     }
 }

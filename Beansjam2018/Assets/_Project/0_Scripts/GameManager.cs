@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour {
 
     float maxGuests;
     float currentGuests;
-    public float decreaseValue = 2;
+    public float decreaseValue = 0.5f;
     static public int amountOfIssues = 0;
 
 
-    Slider guestoMeter;
+    static public Slider guestoMeter;
 
     //MANAGERS
     public WhackManager whackManager;
@@ -45,6 +45,13 @@ public class GameManager : MonoBehaviour {
         guestoMeter.value -= Time.deltaTime * decreaseValue * amountOfIssues;
     }
 
+    static public void AddPoints(float value)
+    {
+        guestoMeter.value += value;
+        Debug.Log(amountOfIssues);
+        Debug.Log("VALUE ADDED!");
+    }
+
     static public void IncreaseAmountOfIssues()
     {
         Mathf.Clamp(amountOfIssues++, 0, 4);
@@ -67,7 +74,6 @@ public class GameManager : MonoBehaviour {
             while(!issueSpawned && amountOfIssues < 4)
             {
                 int index = Random.Range(0, 4);
-
                 if(index == 0)
                 {
                     if(motionManager.game_solved)
