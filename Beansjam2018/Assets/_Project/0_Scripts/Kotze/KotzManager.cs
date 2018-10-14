@@ -27,6 +27,7 @@ public class KotzManager : MonoBehaviour, IProblem {
             {
                 if (hit.transform.tag == "Kotze")
                 {
+                    SoundManager.instance.PlaySFX_QUIETSCHEN();
                     currKotzList.GetComponent<KotzListe>().kotzListe.Remove(hit.transform.gameObject);
                     Destroy(hit.transform.gameObject);
                 }
@@ -36,7 +37,8 @@ public class KotzManager : MonoBehaviour, IProblem {
         {
             Destroy(currKotzList);
             game_solved = true;
-            GameManager.AddPoints(5.0f);
+            SoundManager.instance.PlaySFX_CLEAN();
+            GameManager.AddPoints(8.0f);
             GameManager.DecreaseAmountOfIssues();
             GameManager.AddRescued();
         }
@@ -46,6 +48,7 @@ public class KotzManager : MonoBehaviour, IProblem {
     public void ResetIssue()
     {
         game_solved = false;
+        SoundManager.instance.PlayRandomSFX_KOTZE();
         currKotzList = Instantiate(kotzList, kotzList.transform.position, kotzList.transform.rotation) as GameObject;
         GameManager.IncreaseAmountOfIssues();
 

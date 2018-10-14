@@ -189,13 +189,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293369286046712}
-  m_LocalRotation: {x: -0.26906392, y: 0.0013120925, z: -0.00036658658, w: 0.96312135}
-  m_LocalPosition: {x: 0.123, y: -0.17, z: -15.291}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.09718304, y: 0.001228177, z: -0.0005895373, w: 0.9952656}
+  m_LocalPosition: {x: 0.124004364, y: 0.08596771, z: -13.662207}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4451780844629302}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -31.217001, y: 0.18300001, z: -0.095000006}
+  m_LocalEulerAnglesHint: {x: -11.154, y: 0.149, z: -0.082}
 --- !u!4 &4107706253663336
 Transform:
   m_ObjectHideFlags: 1
@@ -254,13 +254,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546238272227954}
-  m_LocalRotation: {x: -0.26906392, y: 0.0013120925, z: -0.00036658658, w: 0.96312135}
-  m_LocalPosition: {x: 0.123, y: -0.17, z: -15.291}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.13279954, y: 0.0012485217, z: -0.00054512994, w: 0.99114203}
+  m_LocalPosition: {x: 0.124004364, y: 0.086, z: -13.661}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4760395206028858}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -31.217001, y: 0.18300001, z: -0.095000006}
+  m_LocalEulerAnglesHint: {x: -15.2630005, y: 0.156, z: -0.08400001}
 --- !u!4 &4409423919003144
 Transform:
   m_ObjectHideFlags: 1
@@ -672,7 +672,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4a0954a9de6676349ac654fb488d93a0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -769,11 +769,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yDistToSwipe: 0
   belowYDestroy: -50
-  lerpFactor: 15
+  lerpFactor: 20
   testForce: {x: 0, y: 0, z: 100}
   screenShake: {x: 0.1, y: 0.1}
   velocity: {x: 0, y: 0, z: 0}
-  throwMultiplier: {x: 700, y: 700, z: 700}
+  throwMultiplier: {x: 1500, y: 1500, z: 1500}
   fx_watersplash: {fileID: 0}
   prefab_Watersplash: {fileID: 1250420299241474, guid: 03f42a0292b7f2d42adc5764d70c9eea,
     type: 2}

@@ -46,8 +46,9 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
             Destroy(currFireList);
             game_solved = true;
             GameManager.DecreaseAmountOfIssues();
-            GameManager.AddPoints(5.0f);
+            GameManager.AddPoints(8.0f);
             GameManager.AddRescued();
+            fx_fire.Stop();
 
         }
 	}
@@ -57,12 +58,7 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
         currFireList = Instantiate(fireListPrefab, fireStartPos.transform.position, fireListPrefab.transform.rotation) as GameObject;
         GameManager.IncreaseAmountOfIssues();
         game_solved = false;
-    }
-
-    public void UpdateFireSoundVol()
-    {
-        float volume = (float)currFireList.GetComponent<FireList>().fireList.Count / (float)fireNumStart;
-        fx_fire.volume = volume;
+        fx_fire.Play();
     }
 
     private void Respawn()

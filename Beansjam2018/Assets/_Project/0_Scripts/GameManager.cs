@@ -137,7 +137,10 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateRandomIssue()
     {
-        probAcc += Time.deltaTime;
+        if (amountOfIssues < 4 )
+        {
+            probAcc += Time.deltaTime;
+        }
 
         if(probAcc >= currentTimeTilProblem)
         {

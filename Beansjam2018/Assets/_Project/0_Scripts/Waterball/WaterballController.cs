@@ -112,7 +112,7 @@ public class WaterballController : MonoBehaviour {
         {
             touched = true;
             Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 2.25f));
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 3.5f));
             this.transform.position = Vector3.Lerp(transform.position, touchPos, Time.deltaTime * lerpFactor) ;
             velocity = new Vector3(touchPos.x - transform.position.x, 0f, touchPos.y - transform.position.y);
         }
@@ -126,7 +126,7 @@ public class WaterballController : MonoBehaviour {
             rb.AddRelativeForce(new Vector3(velocity.x * throwMultiplier.x, velocity.y * throwMultiplier.y, velocity.z * throwMultiplier.z), ForceMode.Force);
             rb.AddRelativeTorque(new Vector3(velocity.z * throwMultiplier.z, velocity.x * throwMultiplier.x, 0f), ForceMode.Force);
         }
-        
+
         //MOUSEMOUSE
         if (Input.GetMouseButton(0) && throwable && waterballTouched)
         {
@@ -165,7 +165,6 @@ public class WaterballController : MonoBehaviour {
             iTween.ShakePosition(Camera.current.gameObject, iTween.Hash("y", screenShake.y, "x", screenShake.x, "time", 0.3f));
             Handheld.Vibrate();
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
-            GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().UpdateFireSoundVol();
             Destroy(other.gameObject);
         } else if(other.tag == "waterball_booth")
         {

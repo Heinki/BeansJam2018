@@ -55,7 +55,7 @@ public class MotionManager : MonoBehaviour, IProblem {
                 tears.SetActive(false);
                 game_solved = true;
                 GameManager.DecreaseAmountOfIssues();
-                GameManager.AddPoints(5.0f);
+                GameManager.AddPoints(8.0f);
                 GameManager.AddRescued();
             }
         }
@@ -68,6 +68,8 @@ public class MotionManager : MonoBehaviour, IProblem {
             FlyObject fly = flies[i].GetComponent<FlyObject>();
             fly.ResetMotion();
         }
+        SoundManager.instance.PlaySFX_BIENEN();
+        SoundManager.instance.PlaySFX_CRYING();
         girl_smile.SetActive(false);
         girl_sad.SetActive(true);
         tears.SetActive(true);

@@ -54,7 +54,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                             boot_red.SetActive(false);
                             this.game_solved = true;
                             GameManager.DecreaseAmountOfIssues();
-                            GameManager.AddPoints(5.0f);
+                            GameManager.AddPoints(8.0f);
                             GameManager.AddRescued();
                         }
                     }

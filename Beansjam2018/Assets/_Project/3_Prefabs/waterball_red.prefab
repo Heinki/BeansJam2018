@@ -37,13 +37,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773903341492682}
-  m_LocalRotation: {x: -0.26906392, y: 0.0013120925, z: -0.00036658658, w: 0.96312135}
-  m_LocalPosition: {x: -0.256, y: 0.126, z: -13.421}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.09718304, y: 0.001228177, z: -0.0005895373, w: 0.9952656}
+  m_LocalPosition: {x: 0.124004364, y: 0.08596771, z: -13.662207}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -31.217001, y: 0.18300001, z: -0.095000006}
+  m_LocalEulerAnglesHint: {x: -11.154, y: 0.149, z: -0.082}
 --- !u!23 &23192271525405848
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -126,11 +126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yDistToSwipe: 0
   belowYDestroy: -50
-  lerpFactor: 15
+  lerpFactor: 20
   testForce: {x: 0, y: 0, z: 100}
   screenShake: {x: 0.1, y: 0.1}
   velocity: {x: 0, y: 0, z: 0}
-  throwMultiplier: {x: 1000, y: 1000, z: 1000}
+  throwMultiplier: {x: 1500, y: 1500, z: 1500}
   fx_watersplash: {fileID: 0}
   prefab_Watersplash: {fileID: 1250420299241474, guid: 03f42a0292b7f2d42adc5764d70c9eea,
     type: 2}
