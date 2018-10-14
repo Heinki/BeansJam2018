@@ -33,10 +33,59 @@ public class SwipeControl : MonoBehaviour {
 
     void Update()
     {
-        checkSwipe();
+        //checkSwipe();
         KeyboardMovement();
         checkAnimation();
     }
+
+    void GoRight()
+    {
+        dirRight = true;
+        switch (GameManager.currGame)
+        {
+            case GameManager.CurrGame.game1:
+                GameManager.currGame = GameManager.CurrGame.game2;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game2:
+                GameManager.currGame = GameManager.CurrGame.game3;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game3:
+                GameManager.currGame = GameManager.CurrGame.game4;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game4:
+                GameManager.currGame = GameManager.CurrGame.game1;
+                cameraMoving = true;
+                break;
+        }
+    }
+
+    void GoLeft()
+    {
+        dirRight = false;
+        switch (GameManager.currGame)
+        {
+            case GameManager.CurrGame.game1:
+                GameManager.currGame = GameManager.CurrGame.game4;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game2:
+                GameManager.currGame = GameManager.CurrGame.game1;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game3:
+                GameManager.currGame = GameManager.CurrGame.game2;
+                cameraMoving = true;
+                break;
+            case GameManager.CurrGame.game4:
+                GameManager.currGame = GameManager.CurrGame.game3;
+                cameraMoving = true;
+                break;
+        }
+    }
+
 
     void KeyboardMovement()
     {
@@ -282,4 +331,6 @@ public class SwipeControl : MonoBehaviour {
             }
         }
     }
+
+
 }
