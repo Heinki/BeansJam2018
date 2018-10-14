@@ -225,7 +225,7 @@ public class SwipeControl : MonoBehaviour {
 
                 if (directionChosen)
                 {
-                    if (startPos.y <= 400)
+                    if (startPos.y <= 380)
                     {
                         anim = true;
                         if (Mathf.Sign(direction.x) <= 0)

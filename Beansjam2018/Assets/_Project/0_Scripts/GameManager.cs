@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour {
 
     static public CurrGame currGame;
 
-    float highscore;
+    static float highscore;
+    static int boothsRescued;
+    static float timeSurvived;
+
 
     float maxGuests;
     float currentGuests;
-    public float decreaseValue = 0.5f;
+    public float decreaseValue = 0.1f;
     static public int amountOfIssues = 0;
 
 
@@ -24,10 +27,17 @@ public class GameManager : MonoBehaviour {
     public MotionManager motionManager;
     public WaterballGameManager waterBallManager;
     public KotzManager kotzManager;
+    public SceneLoader sceneloader;
 
     public Vector2 range = new Vector2(2f, 4f);
     private float currentTimeTilProblem;
     private float probAcc = 0f;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     void Start () {
         currGame = CurrGame.game1;
@@ -36,9 +46,49 @@ public class GameManager : MonoBehaviour {
     }
 	
 	void Update () {
-        deductPoints();
-        ActivateRandomIssue();
+        if (whackManager != null)
+        {
+            deductPoints();
+            ActivateRandomIssue();
+            AddScore();
+            CheckGuestoMeter();
+        }
 	}
+
+    public static int GetRescueValue()
+    {
+        return boothsRescued;
+    }
+
+    public static float GetTimeSurvived()
+    {
+        return Mathf.Round(timeSurvived);
+    }
+
+    public static float GetHighscore()
+    {
+        return Mathf.Round(highscore);
+    }
+
+
+    private void CheckGuestoMeter()
+    {
+        if (guestoMeter.value <= 0)
+        {
+            highscore = boothsRescued * timeSurvived;
+            sceneloader.LoadGameOverScene();
+        }
+    }
+
+    public static void AddRescued()
+    {
+        boothsRescued++;
+    }
+
+    void AddScore()
+    {
+        timeSurvived += Time.deltaTime;
+    }
 
     void deductPoints()
     {
@@ -48,8 +98,6 @@ public class GameManager : MonoBehaviour {
     static public void AddPoints(float value)
     {
         guestoMeter.value += value;
-        Debug.Log(amountOfIssues);
-        Debug.Log("VALUE ADDED!");
     }
 
     static public void IncreaseAmountOfIssues()

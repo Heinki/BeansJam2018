@@ -48,6 +48,7 @@ public class MotionManager : MonoBehaviour, IProblem {
                 game_solved = true;
                 GameManager.DecreaseAmountOfIssues();
                 GameManager.AddPoints(5.0f);
+                GameManager.AddRescued();
             }
         }
     }

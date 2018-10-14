@@ -49,6 +49,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                             this.game_solved = true;
                             GameManager.DecreaseAmountOfIssues();
                             GameManager.AddPoints(5.0f);
+                            GameManager.AddRescued();
                         }
                     }
                 }
@@ -77,6 +78,7 @@ public class WhackManager : MonoBehaviour, IProblem {
                         this.game_solved = true;
                         GameManager.DecreaseAmountOfIssues();
                         GameManager.AddPoints(5.0f);
+                        GameManager.AddRescued();
                     }
                 }
 

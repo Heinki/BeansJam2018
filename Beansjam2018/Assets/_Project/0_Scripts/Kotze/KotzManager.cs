@@ -38,6 +38,7 @@ public class KotzManager : MonoBehaviour, IProblem {
             game_solved = true;
             GameManager.AddPoints(5.0f);
             GameManager.DecreaseAmountOfIssues();
+            GameManager.AddRescued();
         }
     }
 

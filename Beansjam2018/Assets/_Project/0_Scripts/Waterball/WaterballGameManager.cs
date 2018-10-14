@@ -43,9 +43,10 @@ public class WaterballGameManager : MonoBehaviour, IProblem {
         if(currFireList.GetComponent<FireList>().fireList.Count == 0)
         {
             Destroy(currFireList);
-            GameManager.DecreaseAmountOfIssues();
             game_solved = true;
+            GameManager.DecreaseAmountOfIssues();
             GameManager.AddPoints(5.0f);
+            GameManager.AddRescued();
 
         }
 	}
