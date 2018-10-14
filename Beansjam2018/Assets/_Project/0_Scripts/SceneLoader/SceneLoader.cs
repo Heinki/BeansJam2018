@@ -7,6 +7,12 @@ public class SceneLoader : MonoBehaviour {
 
 	public void LoadMainScene ()
     {
+        GameObject manager = GameObject.Find("GameManager");
+        if (manager != null)
+        {
+            GameManager.ResetHighScore();
+            Destroy(manager);
+        }
         SceneManager.LoadScene("Main");
     }
 
@@ -17,6 +23,12 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadStartScene()
     {
+        GameObject manager = GameObject.Find("GameManager");
+        if (manager != null)
+        {
+            GameManager.ResetHighScore();
+            Destroy(manager);
+        }
         SceneManager.LoadScene("Start");
     }
 }

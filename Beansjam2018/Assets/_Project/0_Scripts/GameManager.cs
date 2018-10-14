@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
     float maxGuests;
     float currentGuests;
-    public float decreaseValue = 0.1f;
+    public float decreaseValue = 0.001f;
     static public int amountOfIssues = 0;
 
 
@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
     private float currentTimeTilProblem;
     private float probAcc = 0f;
 
+    Text gameText;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour {
         currGame = CurrGame.game1;
         guestoMeter = GameObject.Find("Guestometer").GetComponent<Slider>();
         currentTimeTilProblem = Random.Range(range.x, range.y);
+        gameText = GameObject.Find("GameText").GetComponent<Text>();
     }
 	
 	void Update () {
@@ -52,8 +55,29 @@ public class GameManager : MonoBehaviour {
             ActivateRandomIssue();
             AddScore();
             CheckGuestoMeter();
+            CheckGameText();
         }
 	}
+
+    void CheckGameText()
+    {
+        if(currGame == CurrGame.game1) {
+            gameText.text = "HIT!";
+        } else if (currGame == CurrGame.game2) {
+            gameText.text = "SHAKE!";
+        } else if (currGame == CurrGame.game3) {
+            gameText.text = "WIPE!";
+        } else if (currGame == CurrGame.game4) {
+            gameText.text = "THROW!";
+        }
+    }
+
+    public static void ResetHighScore()
+    {
+        highscore = 0;
+        boothsRescued = 0;
+        timeSurvived = 0;
+    }
 
     public static int GetRescueValue()
     {
@@ -75,6 +99,7 @@ public class GameManager : MonoBehaviour {
     {
         if (guestoMeter.value <= 0)
         {
+            amountOfIssues = 0;
             highscore = boothsRescued * timeSurvived;
             sceneloader.LoadGameOverScene();
         }
