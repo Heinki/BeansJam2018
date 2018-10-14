@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017736077710304}
   m_LocalRotation: {x: -0.26906392, y: 0.0013120925, z: -0.00036658658, w: 0.96312135}
-  m_LocalPosition: {x: 0.013999939, y: 0.12600005, z: -13.421999}
+  m_LocalPosition: {x: 0.123, y: -0.17, z: -15.291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,7 +111,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114139536597557446
 MonoBehaviour:
@@ -130,5 +130,7 @@ MonoBehaviour:
   testForce: {x: 0, y: 0, z: 100}
   screenShake: {x: 0.1, y: 0.1}
   velocity: {x: 0, y: 0, z: 0}
-  throwMultiplier: {x: 500, y: 500, z: 500}
+  throwMultiplier: {x: 700, y: 700, z: 700}
   fx_watersplash: {fileID: 0}
+  prefab_Watersplash: {fileID: 1250420299241474, guid: 03f42a0292b7f2d42adc5764d70c9eea,
+    type: 2}

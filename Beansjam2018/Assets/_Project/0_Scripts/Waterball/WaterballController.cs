@@ -13,6 +13,8 @@ public class WaterballController : MonoBehaviour {
     public Vector3 throwMultiplier;
     public AudioSource fx_watersplash;
 
+    public GameObject prefab_Watersplash;
+
     //Private References
     Rigidbody rb;
 
@@ -185,6 +187,7 @@ public class WaterballController : MonoBehaviour {
     {
         if (other.tag == "Fire")
         {
+            Instantiate(prefab_Watersplash, this.transform.position, prefab_Watersplash.transform.rotation);
             iTween.ShakePosition(Camera.current.gameObject, iTween.Hash("y", screenShake.y, "x", screenShake.x, "time", 0.3f));
             Handheld.Vibrate();
             GameObject.FindGameObjectWithTag("WaterballGamemanager").GetComponent<WaterballGameManager>().currFireList.GetComponent<FireList>().fireList.Remove(other.gameObject);
@@ -192,6 +195,7 @@ public class WaterballController : MonoBehaviour {
             Destroy(other.gameObject);
         } else if(other.tag == "waterball_booth")
         {
+            Instantiate(prefab_Watersplash, this.transform.position, prefab_Watersplash.transform.rotation);
             Destroy(this.gameObject);
             //SPLASH PARTICLE & SOUND
         }
